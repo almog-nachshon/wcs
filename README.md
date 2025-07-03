@@ -138,7 +138,7 @@ curl http://localhost:8080/service-b-info
 
 | CLI Curl Output                          | Terminal Logs                            |
 |------------------------------------------|-------------------------------------------|
-| ![CURL](../screen-shots/CURL.png)        | ![WEB](../screen-shots/WEB.png)           |
+| ![CURL](screen-shots/CURL.png)        | ![WEB](screen-shots/WEB.png)           |
 
 ---
 
