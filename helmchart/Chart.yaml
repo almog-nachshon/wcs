@@ -1,0 +1,5 @@
+apiVersion: "v0.0.5"
+name: wsc-devops-exam
+version: 0.1.5
+description: Helm chart for Service A and Service B
+type: application

@@ -1,0 +1,28 @@
+deployments:
+  serviceA:
+    name: service-a
+    image: service-a:v0.0.5
+    port: 8080
+    labels:
+      app: service-a
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+  serviceB:
+    name: service-b
+    image: busybox
+    command: ["sh", "-c", "while true; do dd if=/dev/zero of=/dev/null; done"]
+    port: 80
+    labels:
+      app: service-b
+    resources:
+      limits:
+        cpu: 400m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi

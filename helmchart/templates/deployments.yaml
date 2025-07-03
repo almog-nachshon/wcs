@@ -1,0 +1,40 @@
+{{- $deployments := .Values.deployments }}
+{{- range $name, $svc := $deployments }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $svc.name }}
+  labels:
+    app: {{ $svc.labels.app }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ $svc.labels.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ $svc.labels.app }}
+    spec:
+      {{- if eq $svc.name "service-a" }}
+      serviceAccountName: service-a-sa
+      {{- end }}
+      containers:
+        - name: {{ $svc.name }}
+          image: {{ $svc.image }}
+          {{- if $svc.command }}
+          command: {{ toJson $svc.command }}
+          {{- end }}
+          ports:
+            - containerPort: {{ $svc.port }}
+          resources:
+            limits:
+              cpu: {{ $svc.resources.limits.cpu }}
+              memory: {{ $svc.resources.limits.memory }}
+            requests:
+              cpu: {{ $svc.resources.requests.cpu }}
+              memory: {{ $svc.resources.requests.memory }}
+---
+{{- end }}
+
+---
